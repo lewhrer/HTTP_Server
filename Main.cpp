@@ -34,9 +34,8 @@ int main()
     }
 
     listen(listener, 1);
-    sock = accept(listener, NULL, NULL);
 
-    while (sock == 0)
+    do
     {
         sock = accept(listener, NULL, NULL);
 
@@ -45,7 +44,7 @@ int main()
             std::cout << "Accept";
             exit(0);
         }
-    }
+    } while (sock == 0);
 
     send(sock, kMessage, sizeof(kMessage), 0);
     close(sock);
